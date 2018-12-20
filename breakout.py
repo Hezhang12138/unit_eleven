@@ -43,7 +43,11 @@ def main():
                 x = x +BRICK_WIDTH + BRICK_SEP
             y = y +BRICK_HEIGHT + BRICK_SEP
             x = 0
-    mainSurface.fill(WHITE)
+    #mainSurface.fill(WHITE)
+    paddle_1 = paddle.Paddle(mainSurface, WHITE, PADDLE_WIDTH, PADDLE_HEIGHT)
+    paddle_1.rect.x = APPLICATION_WIDTH / 2
+    paddle_1.rect.y = APPLICATION_HEIGHT - 30
+
 
     while True:
         for event in pygame.event.get():
