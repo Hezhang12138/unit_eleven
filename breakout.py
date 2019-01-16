@@ -34,6 +34,7 @@ def main():
     # the screen (BRICK_Y_OFFSET)
     mainSurface.fill(WHITE)
     bricks_group = pygame.sprite.Group()
+    paddle_group = pygame.sprite.Group()
     x = 0
     y = BRICK_Y_OFFSET
     for a in color:
@@ -53,6 +54,7 @@ def main():
     paddle_1.rect.y = APPLICATION_HEIGHT - 30
     paddle_1.move()
     mainSurface.blit(paddle_1.image, paddle_1.rect)
+    paddle_group.add(paddle_1)
 
     my_ball = ball.Ball(ORANGE, APPLICATION_WIDTH, APPLICATION_HEIGHT, RADIUS_OF_BALL)
     my_ball.rect.x = APPLICATION_WIDTH / 2
@@ -69,8 +71,13 @@ def main():
             mainSurface.blit(block.image, block.rect)
         paddle_1.move()
         my_ball.move()
+        my_ball.collide(paddle_group)
+        my_ball.collideBrick(bricks_group)
         mainSurface.blit(paddle_1.image, paddle_1.rect)
         mainSurface.blit(my_ball.image, my_ball.rect)
+        if my_ball.rect.bottom >= APPLICATION_HEIGHT:
+            my_ball.rect.x = APPLICATION_WIDTH / 2
+            my_ball.rect.y = APPLICATION_HEIGHT / 2
         pygame.display.update()
 
 
