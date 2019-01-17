@@ -14,7 +14,6 @@ class Paddle(pygame.sprite.Sprite):
         self.image.fill(self.color)
 
     def move(self):
-        screen_width = self.main_surface.get_width()
-        screen_height = self.main_surface.get_height()
+        self.rect.x = pygame.mouse.get_pos()[0]
 
 

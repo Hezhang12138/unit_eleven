@@ -28,7 +28,11 @@ def main():
     color = [RED, ORANGE, YELLOW, GREEN, CYAN]
     mainSurface = pygame.display.set_mode((400, 600), 32, 0)
 
-    mainSurface.fill("background.jpg")
+
+    background_image = pygame.image.load("background.jpg")
+    background_rect = background_image.get_rect()
+    background_rect.x = 0
+    background_rect.y = 0
     bricks_group = pygame.sprite.Group()
     paddle_group = pygame.sprite.Group()
     x = 0
@@ -45,7 +49,7 @@ def main():
             y = y +BRICK_HEIGHT + BRICK_SEP
             x = 0
 
-    paddle_1 = paddle.Paddle(mainSurface, BLACK, PADDLE_WIDTH, PADDLE_HEIGHT)
+    paddle_1 = paddle.Paddle(mainSurface, WHITE, PADDLE_WIDTH, PADDLE_HEIGHT)
     paddle_1.rect.x = APPLICATION_WIDTH / 2 - 30
     paddle_1.rect.y = APPLICATION_HEIGHT - 30
     paddle_1.move()
@@ -63,7 +67,7 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-        mainSurface.fill(WHITE)
+        mainSurface.blit(background_image, background_rect)
         for block in bricks_group:
             mainSurface.blit(block.image, block.rect)
         paddle_1.move()
