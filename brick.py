@@ -10,3 +10,4 @@ class Brick(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.color = color
         self.image.fill(self.color)
+        self

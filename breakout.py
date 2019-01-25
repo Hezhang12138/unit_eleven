@@ -5,6 +5,7 @@ import paddle
 import ball
 
 def main():
+    pygame.init()
     APPLICATION_WIDTH = 400
     APPLICATION_HEIGHT = 600
     PADDLE_Y_OFFSET = 30
@@ -60,6 +61,7 @@ def main():
     my_ball.rect.x = APPLICATION_WIDTH / 2
     my_ball.rect.y = APPLICATION_HEIGHT / 2
     mainSurface.blit(my_ball.image, my_ball.rect)
+    bottom_sound = pygame.mixer.Sound("quick_fart_x.wav")
 
 
     while True:
@@ -79,6 +81,8 @@ def main():
         if my_ball.rect.bottom >= APPLICATION_HEIGHT:
             my_ball.rect.x = APPLICATION_WIDTH / 2
             my_ball.rect.y = APPLICATION_HEIGHT / 2
+            bottom_sound.play()
+
         pygame.display.update()
 
 
